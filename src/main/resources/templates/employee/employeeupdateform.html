@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+
+    <!-- css-link -->
+    <link rel="stylesheet"
+          th:href="@{/css/demo.css}"/>
+    <!-- css-link -->
+
+    <!-- bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- bootstrap-->
+</head>
+<body>
+<h1>Save Employee</h1>
+<hr>
+
+<form action="#"    th:action="@{/employeeController/save}"
+                    th:object="${employeeController}" method="POST">
+
+    <!-- Add hidden form field to handle the update -->
+    <input type="hidden" th:field="*{id}"> <!--this binds to the model attribute, this will tell the app which one to update -->
+
+
+    <!-- first Name -->
+    <input type="text" th:field="*{firstName}"
+           class="form-control mb-4 w-25" placeholder="first Name">
+
+    <!--last Name -->
+    <input type="text" th:field="*{lastname}"
+            class="form-control mb-4 w-25" placeholder="last Name">
+
+    <!-- email -->
+    <input type="text" th:field="*{email}"
+           class="form-control mb-4 w-25" placeholder="Email">
+
+    <!--- phoneNumber -->
+    <input type="text" th:field="*{phoneNumber}"
+          class="form-control mb-4 w-25" placeholder="phone Number">
+
+    <!-- summit -->
+    <button type="submit" class="btn btn-info col-2">Save</button>
+
+</form>
+<hr>
+<a th:href="@{/employeeController/list}" class="ms-2">Back to Employee Directory</a>
+
+
+</body>
+</html>

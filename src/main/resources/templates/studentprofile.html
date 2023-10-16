@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css-link -->
+    <link rel="stylesheet"
+          th:href="@{/css/demo.css}"/>
+    <!-- css-link -->
+    <!-- bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- bootstrap-->
+</head>
+<body>
+
+<h2 class="ms-2 mt-4">WELCOME!!!</h2>
+
+<h2 class="text-center">Student Directory </h2>
+<hr>
+
+<!-- Add button to add new Student: -->
+<a th:href="@{/MainStudentController/showStudentFormForAdd}"
+    class="btn btn-primary btn-sm mb-3 ">
+    Add Student
+</a>
+<!-- Add button to add new Student: -->
+
+
+
+<!-- Table for the Student Directory -->
+<table class="table table-bordered table-striped ">
+    <thead class="table-dark">
+    <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th>phoneNumber </th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tempStudent : ${MainStudentController}">
+
+
+        <td th:text="${tempStudent.firstName}"/>
+        <td th:text="${tempStudent.lastName}"/>
+        <td th:text="${tempStudent.email}"/>
+        <td th:text="${tempStudent.phoneNumber}"/>
+        <!-- Add update button Link --->
+        <td>
+            <!-- update -->
+           <a th:href="@{/MainStudentController/showStudentFormForUpdate(studentId=${tempStudent.id})}"
+              class="btn btn-info btn-sm">
+             Update
+           </a>
+            <!-- update -->
+
+            <!-- Delete -->
+            <a th:href="@{/MainStudentController/delete(studentId=${tempStudent.id})}"
+               class="btn btn-danger btn-sm"
+               onclick="if (!(confirm(' Are you sure you want to delete this student? '))) return false">
+                Delete
+            </a>
+
+            <!-- Delete -->
+        </td>
+    </tr>
+
+    </tbody>
+
+
+</table>
+
+
+<a th:href="@{/StudentController/home}" class="mt-5">Back to Main-Page</a>
+</body>
+
+</html>
